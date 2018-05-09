@@ -16,12 +16,16 @@ namespace BulkRenamer
             string returnString = "";
             string fileExt = Regex.Match(file, @".+(\.[A-Za-z]+)").Groups[1].Value;
 
-            MatchCollection regextextmatches = Regex.Matches(pattern, @"\[(n)\]|\{([a-zA-Z0-9.; _-]+)\}");
+            MatchCollection regextextmatches = Regex.Matches(pattern, @"\[(d)]|[(n)\]|\{([a-zA-Z0-9.; _-]+)\}");
             foreach (Match item in regextextmatches)
             {
-                if(item.Groups.Count != 1 && item.Groups[1].Value.ToLower() != "n")
+                if(item.Groups.Count != 1 && item.Groups[1].Value.ToLower() != "n" && item.Groups[1].Value.ToLower() != "d")
                 {
                     returnString += item.Groups[2];
+                }
+                else if( item.Groups[1].Value.ToLower() == "d" )
+                {
+
                 }
                 else
                 {
